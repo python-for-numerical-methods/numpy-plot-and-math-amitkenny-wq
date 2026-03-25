@@ -8,7 +8,7 @@ def normalized_array(input_array):
   else:
     data = (data - np.min(data)) / (np.max(data) - np.min(data))
   return data
-
+#
 if __name__ == "__main__":
     # כאן הסטודנטים יכולים להריץ בדיקה עצמית מהירה
     test_data = [10, 20, 30, 40, 50]
