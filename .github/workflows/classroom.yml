@@ -1,11 +1,13 @@
 name: Autograding Tests
 'on':
-- push
-- repository_dispatch
+  - push
+  - repository_dispatch
+
 permissions:
   checks: write
   actions: read
   contents: read
+
 jobs:
   run-autograding-tests:
     runs-on: ubuntu-latest
@@ -13,17 +15,20 @@ jobs:
     steps:
     - name: Checkout code
       uses: actions/checkout@v4
+
     - name: שיעור 2
-      id: '2'
+      id: lesson2        # <--- שיניתי מ-'2' ל-lesson2
       uses: classroom-resources/autograding-command-grader@v1
       with:
         test-name: שיעור 2
         setup-command: pip install numpy pytest
         command: pytest test_exercise.py
         timeout: 10
+
     - name: Autograding Reporter
       uses: classroom-resources/autograding-grading-reporter@v1
       env:
-        2_RESULTS: "${{steps.2.outputs.result}}"
+        # <--- שיניתי את ההתייחסות ל-id החדש
+        LESSON2_RESULTS: "${{steps.lesson2.outputs.result}}" 
       with:
-        runners: '2'
+        runners: lesson2 # <--- שיניתי מ-'2' ל-lesson2
