@@ -1,5 +1,5 @@
 import numpy as np
-
+# a comment for rerunning grading
 def normalized_array(input_array):
   data = input_array.copy()
   data = np.array(data)
